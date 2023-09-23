@@ -65,8 +65,8 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded()
     {
         if(Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckY, isGround) 
-            || Physics2D.Raycast(groundCheck.position + new Vector3(groundCheckX, 0, 0), Vector2.down, groundCheckY, isGround) 
-            || Physics2D.Raycast(groundCheck.position + new Vector3(-groundCheckX, 0, 0), Vector2.down, groundCheckY, isGround))
+            || Physics2D.Raycast(groundCheck.position + new Vector3(groundCheckX, 0, .5f), Vector2.down, groundCheckY, isGround) 
+            || Physics2D.Raycast(groundCheck.position + new Vector3(-groundCheckX, 0, .5f), Vector2.down, groundCheckY, isGround))
         {
             return true;
         }
