@@ -9,11 +9,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float walkSpeed = 1;
     private float xAxis;
 
-    [SerializeField]private float jumpForce = 45;
+    //[SerializeField]private float jumpForce = 8f;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckX = 0.2f;
     [SerializeField] private float groundCheckY = 0.2f;
     [SerializeField] private LayerMask isGround;
+
+    public float fallMulti = 2.5f;
+    public float lowJumpMulti = 2f;
+
+    [Range(0f, 10f)]
+    public float jumpForce;
 
     Animator anim;
 
@@ -72,14 +78,23 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if(Input.GetButtonDown("Jump") && rb.velocity.y > 0)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, 0);
-        }
+        //if(Input.GetButton("Jump") && rb.velocity.y > 0)
+        //{
+        //    rb.velocity = new Vector2(rb.velocity.x, 0);
+        //}
 
         if (Input.GetButtonDown("Jump") && isGrounded())
         {
-            rb.velocity = new Vector3(rb.velocity.x, jumpForce);
+            rb.velocity = Vector2.up * jumpForce;
+        }
+
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMulti - 1) * Time.deltaTime;
+        }
+        else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMulti - 1) * Time.deltaTime;
         }
     }
 
