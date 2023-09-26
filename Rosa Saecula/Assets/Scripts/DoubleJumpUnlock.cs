@@ -9,7 +9,7 @@ public class DoubleJumpUnlock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerController.Instance.unlockedDoubleJump)
+        if (PlayerController.Instance.Doublejump)
         {
             Destroy(gameObject);
         }
@@ -20,7 +20,7 @@ public class DoubleJumpUnlock : MonoBehaviour
         if(collision.CompareTag("Player") && !collected)
         {
             collected = true;
-            PlayerController.Instance.unlockedDoubleJump = true;
+            PlayerController.Instance.Doublejump = true;
 
             Destroy(gameObject);
         }

@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private float walkSpeed = 1;
     private float xAxis;
+    private float horizontal;
+    private float speed;
 
     //[SerializeField]private float jumpForce = 8f;
     [SerializeField] private Transform groundCheck;
@@ -18,9 +20,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int maxJumps = 1;
     private int jumpsLeft;
 
-    [SerializeField] private float dashSpeed;
-    [SerializeField] private float dashTime;
-    [SerializeField] private float dashCooldown;
+    [SerializeField] private float dashingPower = 30f;
+    [SerializeField] private float dashingTime = 0.2f;
+    [SerializeField] private float dashingCooldown = 1f;
 
     public float fallMulti = 2.5f;
     public float lowJumpMulti = 2f;
@@ -34,9 +36,9 @@ public class PlayerController : MonoBehaviour
 
     PlayerStates playerStates;
 
-    public bool unlockedDoubleJump;
-    public bool dash = true;
-    public bool dashed;
+    public bool Doublejump;
+    public bool canDash = true;
+    public bool isDashing;
     public float gravity;
 
     private void Awake()
@@ -67,23 +69,63 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Inputs();
+        GetInputs();
         Move();
         Jump();
+
+        if (isDashing)
+        {
+            return;
+        }
+
+        horizontal = Input.GetAxisRaw("Horizontal");
+
+        rb.velocity = new Vector2(walkSpeed * xAxis, rb.velocity.y);
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (isGrounded())
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                Doublejump = true;
+            }
+
+            else if (Doublejump)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                Doublejump = false;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            StartCoroutine(Dash());
+        }
+
+        
         Flip();
-        if (playerStates.dashing) return;
-        DashStart();
+        
 
     }
 
-    void Inputs()
+    private void FixedUpdate()
+    {
+        if (isDashing)
+        {
+            return;
+        }
+
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+    }
+
+    void GetInputs()
     {
         xAxis = Input.GetAxisRaw("Horizontal");
     }
 
     private void Move()
     {
-        rb.velocity = new Vector2(walkSpeed * xAxis, rb.velocity.y);
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
     public bool isGrounded()
@@ -140,29 +182,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void DashStart()
-    {
-        if(Input.GetButtonDown("Dash") && !dashed)
-        {
-            StartCoroutine(Dash());
-            dashed = true;
-        }
-
-        if (isGrounded())
-        {
-            dashed = false;
-        }
-    }
-
     IEnumerator Dash()
     {
-        dash = false;
-        playerStates.dashing = true;
-        rb.gravityScale = 0;
-        rb.velocity = new Vector2(transform.localScale.x * dashSpeed, 0);
-        yield return new WaitForSeconds(dashTime);
-        rb.gravityScale = gravity;
-        yield return new WaitForSeconds(dashCooldown);
-        dash = true;
+        canDash = false;
+        isDashing = true;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+        yield return new WaitForSeconds(dashingTime);
+        rb.gravityScale = originalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
     }
 }
