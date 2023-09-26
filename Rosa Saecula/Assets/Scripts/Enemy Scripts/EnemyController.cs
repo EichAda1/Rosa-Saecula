@@ -7,14 +7,23 @@ public class EnemyController : MonoBehaviour
 
     [HideInInspector]
     public bool isFacingRight = false;
+    [HideInInspector]
+    public Transform player;
+    [HideInInspector]
+    public Transform enemyStartingPos;
 
     public float enemySightRange;
+    public float ProjectileRange;
     public float enemySpeed;
     public float enemyJumpHeight;
     public int enemyHealth;
     public int enemyDamage;
 
-    
+
+
+
+
+
 
 
 

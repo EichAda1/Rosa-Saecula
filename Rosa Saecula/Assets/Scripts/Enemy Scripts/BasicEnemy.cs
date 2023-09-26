@@ -8,8 +8,7 @@ using UnityEngine;
 public class BasicEnemy : EnemyController
 {
 
-    private Transform player;
-    private Transform enemyStartingPos;
+
 
 
     void Update()
@@ -20,6 +19,8 @@ public class BasicEnemy : EnemyController
         enemyStartingPos = GameObject.FindGameObjectWithTag("EnemyStartingPos").transform;
         float playerDistance = Vector2.Distance(player.position, transform.position);
         float enemyStartingPosDis = Vector2.Distance(enemyStartingPos.position, transform.position);
+
+
         // makes the enemy follow the player if they are close enough
         if (playerDistance < enemySightRange)
             
