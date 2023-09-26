@@ -14,6 +14,8 @@ public class DataPersistenceManager : MonoBehaviour
     private List<IDataPersistence> dataPersistenceObjects;
     private FileDataHandler dataHandler;
 
+    public PlayerController Player;
+
     public static DataPersistenceManager instance { get; private set; }
 
     private void Awake()

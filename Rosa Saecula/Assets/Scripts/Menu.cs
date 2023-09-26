@@ -25,13 +25,15 @@ public class Menu : MonoBehaviour
     {
         DisableMenuButtons();
         DataPersistenceManager.instance.NewGame();
-        SceneManager.LoadSceneAsync("Play");
+        DataPersistenceManager.instance.SaveGame();
+        SceneManager.LoadSceneAsync("StartingZone");
     }
 
     public void OnLoadGameClicked() 
     {
         DisableMenuButtons();
-        SceneManager.LoadSceneAsync("Play");
+        DataPersistenceManager.instance.LoadGame();
+        SceneManager.LoadSceneAsync(DataPersistenceManager.instance.gameData.sceneID);
     }
 
     //public void OnOptionsClicked()

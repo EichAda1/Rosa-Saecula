@@ -963,9 +963,15 @@ MonoBehaviour:
   gameData:
     deathCount: 0
     playerPosition: {x: 0, y: 0, z: 0}
+    sceneID: 0
     itemCollection:
       keys: []
       values: 
+    roomDictionary:
+      keys: []
+      values: 
+  Player: {fileID: 919209155823785547, guid: 74005feb298dbcf4fab54016c5acebfb, type: 3}
+  isMenu: 0
 --- !u!1 &1317725217
 GameObject:
   m_ObjectHideFlags: 0
