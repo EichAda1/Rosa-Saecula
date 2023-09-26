@@ -15,6 +15,7 @@ public class DataPersistenceManager : MonoBehaviour
     private FileDataHandler dataHandler;
 
     public PlayerController Player;
+    public int _currentAge;
 
     public static DataPersistenceManager instance { get; private set; }
 

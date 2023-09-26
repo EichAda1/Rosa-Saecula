@@ -34,18 +34,18 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
     Animator anim;
 
-    public static PlayerController instance { get; private set; }
+    public static PlayerController Instance { get; private set; }
 
 
     private void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Debug.Log("Only one Player is allowed. Newest instance destroyed.");
             Destroy(this.gameObject);
             return;
         }
-        instance = this;
+        Instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
 
@@ -55,13 +55,13 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         rb = GetComponent<Rigidbody2D>();
         if (DataPersistenceManager.instance.gameData.playerPosition != Vector3.zero)
         {
-            instance.transform.position = DataPersistenceManager.instance.gameData.playerPosition;
+            Instance.transform.position = DataPersistenceManager.instance.gameData.playerPosition;
         }
         else
         {
-            instance.transform.position = DataPersistenceManager.instance.gameData.playerPosition + new Vector3(0,2.255f, 0);
+            Instance.transform.position = DataPersistenceManager.instance.gameData.playerPosition + new Vector3(0,2.255f, 0);
         }
-        CameraFollow.Instance.transform.position = Vector3.Lerp(transform.position, instance.transform.position + CameraFollow.Instance.offset, CameraFollow.Instance.followSpeed);
+        CameraFollow.Instance.transform.position = Vector3.Lerp(transform.position, Instance.transform.position + CameraFollow.Instance.offset, CameraFollow.Instance.followSpeed);
     }
 
 

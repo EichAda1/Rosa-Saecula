@@ -14,37 +14,19 @@ public class RoomChanger : MonoBehaviour
     [SerializeField]
     private Transform _spawnPoint;
 
-    //public int _currentAge = 0;
+    public int _currentAge;
 
     public Room[] RoomList;
 
-    //private void Awake()
-    //{
-    //    _currentAge = DataPersistenceManager.instance.gameData._currentAge; ;
-    //    for (int i = 0; i < 2; i++)
-    //    {
-    //        if (i != _currentAge)
-    //        {
-    //            RoomList[i].gameObject.SetActive(false);
-    //        }
-    //    }
-    //}
+    //public int _currentAge = 0;
 
     private void Start()
     {
         if (_connection == RoomConnection.ActiveConnection) 
         {
-            PlayerController.instance.transform.position = _spawnPoint.position;
-            _currentAge = PlayerController.instance._currentAge;
+            PlayerController.Instance.transform.position = _spawnPoint.position;         
         }
 
-        for (int i = 0; i < RoomList.Length; i++)
-        {
-            if (i != _currentAge)
-            {
-                RoomList[i].gameObject.SetActive(false);
-            }
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
