@@ -4,6 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Enemy
+  - EnemyStartingPos
+  - SaveTile
+  - Platform
+  - NPC
+  - AgeTile
   - Ground
   layers:
   - Default
@@ -12,7 +18,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - Enemy
   - 
   - 
   - 
