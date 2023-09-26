@@ -12,13 +12,9 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     public float yAxis;
     public bool _interact = false;
     private Vector3 playerPosition;
-<<<<<<< Updated upstream
-=======
     private Transform playerTransform;
 
-    public float yAxis;
     public int _currentAge = 0;
->>>>>>> Stashed changes
 
     //[SerializeField]private float jumpForce = 8f;
     [SerializeField] private Transform groundCheck;
@@ -198,10 +194,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     public void LoadData(GameData data)
     {
         this.transform.position = data.playerPosition;
-<<<<<<< Updated upstream
-=======
-        
->>>>>>> Stashed changes
     }
     public void SaveData(ref GameData data)
     {

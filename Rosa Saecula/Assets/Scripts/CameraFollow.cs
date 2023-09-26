@@ -13,12 +13,9 @@ public class CameraFollow : MonoBehaviour
 
     public static CameraFollow Instance;
 
-<<<<<<< Updated upstream
-=======
     public Rigidbody2D Player;
     public int _currentAge;
 
->>>>>>> Stashed changes
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -29,16 +26,13 @@ public class CameraFollow : MonoBehaviour
         {
             Instance = this;
         }
-<<<<<<< Updated upstream
-=======
 
-        if (PlayerController.instance == null)
+        if (PlayerController.Instance == null)
         {
             Instantiate(Player, DataPersistenceManager.instance.gameData.playerTransform);
-            PlayerController.instance._currentAge = DataPersistenceManager.instance.gameData._currentAge;
+            PlayerController.Instance._currentAge = DataPersistenceManager.instance.gameData._currentAge;
         }
-        transform.position = PlayerController.instance.transform.position + offset;
->>>>>>> Stashed changes
+        transform.position = PlayerController.Instance.transform.position + offset;
     }
     // Update is called once per frame
     void Update()

@@ -34,14 +34,14 @@ public class RoomChanger : MonoBehaviour
     {
         if (_connection == RoomConnection.ActiveConnection) 
         {
-            PlayerController.instance.transform.position = _spawnPoint.position;         
+            PlayerController.Instance.transform.position = _spawnPoint.position;         
         }
 
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (PlayerController.instance)
+        if (PlayerController.Instance)
         {
             RoomConnection.ActiveConnection = _connection;
             SceneManager.LoadScene(_targetSceneName);
