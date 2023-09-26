@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     private Transform playerTransform;
 
     public int _currentAge = 0;
+    public float yAxis;
 
     //[SerializeField]private float jumpForce = 8f;
     [SerializeField] private Transform groundCheck;
