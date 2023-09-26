@@ -26,7 +26,7 @@ public class Menu : MonoBehaviour
         DisableMenuButtons();
         DataPersistenceManager.instance.NewGame();
         DataPersistenceManager.instance.SaveGame();
-        SceneManager.LoadSceneAsync("StartingZone");
+        SceneManager.LoadSceneAsync("StartingArea");
     }
 
     public void OnLoadGameClicked() 
