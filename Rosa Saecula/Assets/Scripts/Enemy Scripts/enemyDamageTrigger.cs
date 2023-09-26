@@ -5,20 +5,22 @@ using UnityEngine;
 public class enemyDamageTrigger : MonoBehaviour
 {
 
-    public int damage = 1;
+    public int enemyProjectileDamage = 1;
 
-    //Finish when health is added
-
-
-    // Start is called before the first frame update
-    void Start()
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        
-    }
+        if (collider.tag == "Player")
+        {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            Destroy(gameObject);
+
+        }
+
+        if (collider.tag == "Ground")
+        {
+
+            Destroy(gameObject);
+
+        }
     }
 }

@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour
         aiming = GameObject.FindGameObjectWithTag("Player");
         Vector2 moveDir = (aiming.transform.position - transform.position) * projectileSpeed;
         projectileRigidBody.velocity = new Vector2(moveDir.x, moveDir.y);
-        Destroy(gameObject, 25);
+        
 
 
     }

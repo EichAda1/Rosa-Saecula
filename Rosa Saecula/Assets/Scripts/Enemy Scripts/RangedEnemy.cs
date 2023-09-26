@@ -65,7 +65,16 @@ public class RangedEnemy : EnemyController
 
         }
 
+
+
+        if (enemyHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+
     }
+
+
 
 
     private void OnDrawGizmosSelected()

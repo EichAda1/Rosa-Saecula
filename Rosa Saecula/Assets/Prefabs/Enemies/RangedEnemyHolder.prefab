@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7526884895754570446}
   - component: {fileID: 6400558804526100365}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: pointB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,8 +97,8 @@ GameObject:
   - component: {fileID: 8790457010092345420}
   - component: {fileID: 1657736868664032646}
   - component: {fileID: 3851411721945264004}
-  m_Layer: 1
-  m_Name: FlyingEnemy
+  m_Layer: 6
+  m_Name: RangedEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -227,12 +227,14 @@ MonoBehaviour:
   ProjectileRange: 3
   enemySpeed: 2
   enemyJumpHeight: 0
-  enemyHealth: 0
-  enemyDamage: 0
+  enemyHealth: 1
+  enemyDamage: 1
   pointA: {fileID: 2954663832767177895}
   pointB: {fileID: 803326038510594053}
-  projectile: {fileID: 0}
+  projectile: {fileID: 4482017476453026155, guid: fc03c45fa1adae345a93a008a75811bd, type: 3}
   projectileHolder: {fileID: 3384553450035737786}
+  projectileFireRate: 3
+  projectileNextFiring: 0
 --- !u!50 &3851411721945264004
 Rigidbody2D:
   serializedVersion: 4
@@ -270,7 +272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3000827018075011502}
   - component: {fileID: 4429634331436371680}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: pointA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,7 +355,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7086339954571088357}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ProjectileHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +371,7 @@ Transform:
   m_GameObject: {fileID: 3384553450035737786}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4455478, y: -0.31382823, z: 674.6453}
+  m_LocalPosition: {x: 0.006, y: -0.006, z: 674.6453}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -384,7 +386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8763683178807126415}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RangedEnemyHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

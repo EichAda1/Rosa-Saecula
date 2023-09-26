@@ -60,7 +60,16 @@ public class FlyingEnemy : EnemyController
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, enemySpeed * Time.deltaTime);
         }
+
+
+
+        if (enemyHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
+
+
 
 
     private void OnDrawGizmosSelected()

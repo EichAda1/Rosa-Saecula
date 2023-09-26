@@ -8,7 +8,7 @@ using UnityEngine;
 public class BasicEnemy : EnemyController
 {
 
-
+    
 
 
     void Update()
@@ -34,7 +34,15 @@ public class BasicEnemy : EnemyController
         }
 
 
+        if (enemyHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+
     }
+
+
 
 
     // this is for determining the sight range for the enemies / testing it visibly
