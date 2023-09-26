@@ -9,6 +9,8 @@ TagManager:
   - SaveTile
   - Platform
   - NPC
+  - AgeTile
+  - Ground
   layers:
   - Default
   - TransparentFX

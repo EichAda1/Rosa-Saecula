@@ -9,6 +9,7 @@ public class GameData
     public int deathCount;
     public Vector3 playerPosition;
     public Transform playerTransform;
+    public int _currentAge;
     public int sceneID;
     public SerializableDictionary<string, bool> itemCollection;
     public SerializableDictionary<string, bool> roomDictionary;
@@ -18,6 +19,7 @@ public class GameData
         deathCount = 0;
         playerPosition = Vector3.zero;
         playerTransform = null;
+        _currentAge = 0;
         sceneID = 0;
         itemCollection = new SerializableDictionary<string, bool>();
         roomDictionary = new SerializableDictionary<string, bool>();

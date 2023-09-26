@@ -7,17 +7,16 @@ public class Room : MonoBehaviour
     private static string roomID;
 
     public SerializableDictionary<string, bool> roomsDictionary; //number of rooms
-    private bool roomEntered = false;
     private bool roomVisited = false;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (roomEntered)
-        {
-            gameObject.SetActive(true);
-            VisitRoom();
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (roomEntered)
+    //    {
+    //        gameObject.SetActive(true);
+    //        VisitRoom();
+    //    }
+    //}
 
     public void LoadData(GameData data)
     {

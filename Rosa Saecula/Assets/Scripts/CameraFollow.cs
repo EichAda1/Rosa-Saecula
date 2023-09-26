@@ -14,7 +14,7 @@ public class CameraFollow : MonoBehaviour
     public static CameraFollow Instance;
 
     public Rigidbody2D Player;
-
+    public int _currentAge;
 
     private void Awake()
     {
@@ -26,11 +26,13 @@ public class CameraFollow : MonoBehaviour
         {
             Instance = this;
         }
-        if (PlayerController.instance == null)
+
+        if (PlayerController.Instance == null)
         {
             Instantiate(Player, DataPersistenceManager.instance.gameData.playerTransform);
+            PlayerController.Instance._currentAge = DataPersistenceManager.instance.gameData._currentAge;
         }
-        transform.position = PlayerController.instance.transform.position + offset;
+        transform.position = PlayerController.Instance.transform.position + offset;
     }
     // Update is called once per frame
     void Update()
