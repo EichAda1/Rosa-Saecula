@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableScript : MonoBehaviour
+public class Room : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

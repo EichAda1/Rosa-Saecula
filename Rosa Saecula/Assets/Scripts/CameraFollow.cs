@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] private float  followSpeed = 0.1f;
-    [SerializeField] private Vector3 offset;
+    [SerializeField] public float  followSpeed = 0.1f;
+    [SerializeField] public Vector3 offset;
     [SerializeField] private float yMaxBounds;
     [SerializeField] private float yMinBounds;
     [SerializeField] private float xMaxBounds;
     [SerializeField] private float xMinBounds;
-    
 
-    // Start is called before the first frame update
-    void Start()
+    public static CameraFollow Instance;
+
+    private void Awake()
     {
-        
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
-
     // Update is called once per frame
     void Update()
     {
