@@ -12,12 +12,20 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     public float yAxis;
     public bool _interact = false;
     private Vector3 playerPosition;
+<<<<<<< Updated upstream
+=======
+    private Transform playerTransform;
+
+    public float yAxis;
+    public int _currentAge = 0;
+>>>>>>> Stashed changes
 
     //[SerializeField]private float jumpForce = 8f;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckX = 0.2f;
     [SerializeField] private float groundCheckY = 0.2f;
     [SerializeField] private LayerMask isGround;
+    [SerializeField] private Cooldown cooldown;
 
     public float fallMulti = 2.5f;
     public float lowJumpMulti = 2f;
@@ -66,8 +74,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         Jump();
         Flip();
         Interact();
-
-        //playerPosition = this.transform.position;
     }
 
     void Inputs()
@@ -78,11 +84,13 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
     public bool Interact()
     {       
-        if (IsGrounded())
+
+        if (IsGrounded() && !cooldown.isCoolingDown())
         {
             if (Input.GetAxis("Vertical") > 0)
             {
                 _interact = true;
+                cooldown.StartCooldown();
             }
             else
             {
@@ -157,6 +165,24 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             DataPersistenceManager.instance.SaveGame();
             Debug.Log("Game Saved");
         }
+        if (collision.CompareTag("AgeTile") && Interact())
+        {
+            if (_currentAge >= 0 && _currentAge < 2)
+            {
+                _currentAge++;
+                Debug.Log("Age changed.");
+            }
+            else if (_currentAge >= 2)
+            {
+                _currentAge = 0;
+                Debug.Log("Age changed.");
+            }
+            else
+            {
+                Debug.Log("Error");
+            }
+            
+        }
 
         if (collision.CompareTag("Platform") && IsGrounded() && yAxis > 0)
         {
@@ -168,9 +194,14 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
         //} 
     }
+
     public void LoadData(GameData data)
     {
         this.transform.position = data.playerPosition;
+<<<<<<< Updated upstream
+=======
+        
+>>>>>>> Stashed changes
     }
     public void SaveData(ref GameData data)
     {
