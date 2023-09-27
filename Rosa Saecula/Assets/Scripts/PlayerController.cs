@@ -177,11 +177,11 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     {
         if(xAxis < 0)
         {
-            transform.localScale = new Vector2(-1, transform.localScale.y);
+            transform.localScale = new Vector2(-3, transform.localScale.y);
         }
         else if(xAxis > 0)
         {
-            transform.localScale = new Vector2(1, transform.localScale.y);
+            transform.localScale = new Vector2(3, transform.localScale.y);
         }
     }
 
