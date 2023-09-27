@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     [Range(0f, 10f)]
     public float jumpForce;
 
-    Animator anim;
+   public Animator anim;
 
     public static PlayerController Instance { get; private set; }
 
@@ -68,16 +68,25 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     // Update is called once per frame
     void Update()
     {
+      
+
         Inputs();
         Move();
         Jump();
+        Crouch();
+       
         Flip();
         Interact();
+
+
+  
     }
+
 
     void Inputs()
     {
         xAxis = Input.GetAxisRaw("Horizontal");
+        anim.SetFloat("Speed", Mathf.Abs(xAxis));
         yAxis = Input.GetAxis("Vertical"); //used for interact and dropping through platforms
     }
 
@@ -115,6 +124,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             || Physics2D.Raycast(groundCheck.position + new Vector3(groundCheckX, 0, .5f), Vector2.down, groundCheckY, isGround) 
             || Physics2D.Raycast(groundCheck.position + new Vector3(-groundCheckX, 0, .5f), Vector2.down, groundCheckY, isGround))
         {
+            anim.SetBool("IsJumping", false);
             return true;
         }
         else
@@ -123,26 +133,44 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         }
     }
 
+    void Crouch()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded())
+        {
+            anim.SetBool("IsCrouching", true);
+        }else if(Input.GetKeyUp(KeyCode.LeftShift) && IsGrounded())
+        {
+            anim.SetBool("IsCrouching", false);
+        }
+
+    }
+
     void Jump()
     {
         //if(Input.GetButton("Jump") && rb.velocity.y > 0)
         //{
         //    rb.velocity = new Vector2(rb.velocity.x, 0);
         //}
+        
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = Vector2.up * jumpForce;
+          
+            
         }
 
         if (rb.velocity.y < 0)
         {
             rb.velocity += (fallMulti - 1) * Physics2D.gravity.y * Time.deltaTime * Vector2.up;
+            
         }
         else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
         {
             rb.velocity += (lowJumpMulti - 1) * Physics2D.gravity.y * Time.deltaTime * Vector2.up;
         }
+
+        anim.SetBool("IsJumping", true);
     }
 
     void Flip()
@@ -194,6 +222,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         //} 
     }
 
+
     public void LoadData(GameData data)
     {
         this.transform.position = data.playerPosition;        
@@ -204,4 +233,10 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         data.playerTransform = this.transform;
         data.sceneID = SceneManager.GetActiveScene().buildIndex;
     }
+
+
+
+
+
+
 }
