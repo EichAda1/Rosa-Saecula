@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         Move();
         Jump();
         Crouch();
-       
+        MAttack();
         Flip();
         Interact();
 
@@ -133,12 +133,21 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         }
     }
 
+
+    void MAttack()
+    {
+        if (Input.GetMouseButtonDown(0) )
+        {
+            anim.SetTrigger("IsAttack");
+        }
+    }
+
     void Crouch()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.DownArrow) && IsGrounded())
         {
             anim.SetBool("IsCrouching", true);
-        }else if(Input.GetKeyUp(KeyCode.LeftShift) && IsGrounded())
+        }else if(Input.GetKeyUp(KeyCode.DownArrow) && IsGrounded())
         {
             anim.SetBool("IsCrouching", false);
         }
