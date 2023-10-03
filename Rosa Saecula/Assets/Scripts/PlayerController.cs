@@ -40,13 +40,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
     [Range(0f, 10f)]
     public float jumpForce;
-    private bool Doublejump = false;
-
-    private bool canDash = true;
-    private bool isDashing;
-    private float dashingPower = 48f;
-    private float dashingTime = 0.2f;
-    private float dashingCooldown = 1f;
 
     Animator anim;
 
@@ -101,17 +94,12 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         GetInputs();
         Move();
         Jump();
-<<<<<<< Updated upstream
-=======
-        Crouch();
->>>>>>> Stashed changes
 
         if (isDashing)
         {
             return;
         }
 
-<<<<<<< Updated upstream
         horizontal = Input.GetAxisRaw("Horizontal");
 
         rb.velocity = new Vector2(walkSpeed * xAxis, rb.velocity.y);
@@ -119,13 +107,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         if (Input.GetButtonDown("Jump"))
         {
             if (isGrounded())
-=======
-        xAxis = Input.GetAxisRaw("Horizontal");
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            if (IsGrounded())
->>>>>>> Stashed changes
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 Doublejump = true;
@@ -138,19 +119,12 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             }
         }
 
-<<<<<<< Updated upstream
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-=======
-        if (Input.GetKeyDown(KeyCode.R) && canDash)
->>>>>>> Stashed changes
         {
             StartCoroutine(Dash());
         }
 
-<<<<<<< Updated upstream
         
-=======
->>>>>>> Stashed changes
         Flip();
         
 
@@ -307,34 +281,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         //} 
     }
 
-<<<<<<< Updated upstream
-=======
-    private void FixedUpdate()
-    {
-        if (isDashing)
-        {
-            return;
-        }
-
-        rb.velocity = new Vector2(xAxis * walkSpeed, rb.velocity.y);
-    }
-
-    private IEnumerator Dash()
-    {
-        canDash = false;
-        isDashing = true;
-        float originalGravity = rb.gravityScale;
-        rb.gravityScale = 0f;
-        rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
-        yield return new WaitForSeconds(dashingTime);
-        rb.gravityScale = originalGravity;
-        isDashing = false;
-        yield return new WaitForSeconds(dashingCooldown);
-        canDash = true;
-
-    }
-
->>>>>>> Stashed changes
     public void LoadData(GameData data)
     {
         this.transform.position = data.playerPosition;        
